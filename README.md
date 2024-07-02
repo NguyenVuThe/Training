@@ -4,13 +4,19 @@
 > gg
 
 LOL[^1]
-> [NOTE!]
+> [!NOTE]
 
 > [!TIP]
+> hello
+
 > [!IMPORTANT]
+> gg
+
 > [!WARNING]
 > Hey stop! Just want to stay hi!
+
 >[!CAUTION]
+>you
 
 ## How I create README.md
 ```

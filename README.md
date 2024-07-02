@@ -21,5 +21,5 @@
     - Gun
     - Grenade
   - Valorant
-    [x] Agent
-    [ ] Maps 
+    - [x] Agent 🥇
+    - [ ] Maps 

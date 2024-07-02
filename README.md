@@ -4,6 +4,8 @@
 > gg
 
 LOL[^1]
+[^1]: My reference
+
 > [!NOTE]
 
 > [!TIP]

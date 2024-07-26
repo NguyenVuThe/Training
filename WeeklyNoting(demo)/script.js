@@ -1,7 +1,8 @@
-const inputBox = document.getElementById("input-box");
-const listContainer = document.getElementById("list-container");
+function addTask(listContainerId, inputBoxId){
+    
+    const listContainer = document.getElementById(listContainerId);
+    const inputBox = document.getElementById(inputBoxId);
 
-function addTask(){
     if(inputBox.value === ''){
         alert("Bro there is nothing here.")
     }
@@ -15,30 +16,49 @@ function addTask(){
         let span = document.createElement("span");
         span.innerHTML = "\u00d7";
         li.appendChild(span);
-        saveData();
+
+        saveData(listContainerId);
+        inputBox.value = ''; 
     }
 }
 
-listContainer.addEventListener("click", function(e){
+function saveData(listContainerId){
+    const listContainer = document.getElementById(listContainerId);
+    //store data in local storage setItem(key, value), we store the 'key'
+    localStorage.setItem(`data-${listContainerId}`, listContainer.innerHTML);
+}
+
+function showTask(listContainerId){
+    const listContainer = document.getElementById(listContainerId);
+    listContainer.innerHTML = localStorage.getItem(`data-${listContainerId}`);
+}
+
+function eventListContainer(listContainerId){
+    const listContainer = document.getElementById(listContainerId);
+    
+    listContainer.addEventListener("click", function(e){
     //tagName returns an UPPERCASE element
     if(e.target.tagName === "LI"){
         //toggles the class 'checked'
         e.target.classList.toggle("checked");
-        saveData();
+        saveData(listContainerId);
     }
     //remove the parent 'li'
     else if(e.target.tagName === "SPAN"){
         e.target.parentElement.remove();
-        saveData();
+        saveData(listContainerId);
     }
-},false);
-
-function saveData(){
-    //store data in local storage setItem(key, value), we store the 'key'
-    localStorage.setItem("data", listContainer.innerHTML);
+    },false);
+    
+    showTask(listContainerId);
 }
 
-function showTask(){
-    listContainer.innerHTML = localStorage.getItem("data");
-}
-showTask();
+eventListContainer('list-container1');
+eventListContainer('list-container2');
+eventListContainer('list-container3');
+eventListContainer('list-container4');
+eventListContainer('list-container5');
+eventListContainer('list-container6');
+eventListContainer('list-container7');
+
+

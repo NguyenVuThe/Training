@@ -33,32 +33,33 @@ function showTask(listContainerId){
     listContainer.innerHTML = localStorage.getItem(`data-${listContainerId}`);
 }
 
-function eventListContainer(listContainerId){
+function eventListContainer(listContainerId, inputBoxId){
     const listContainer = document.getElementById(listContainerId);
     
+    showTask(listContainerId);
+
+    const inputBox = document.getElementById(inputBoxId);
+    inputBox.addEventListener("keydown", function(e) {
+        if (e.key === "Enter") {
+            addTask(listContainerId, inputBoxId);
+        }
+    }); 
+    
     listContainer.addEventListener("click", function(e){
-    //tagName returns an UPPERCASE element
-    if(e.target.tagName === "LI"){
-        //toggles the class 'checked'
-        e.target.classList.toggle("checked");
-        saveData(listContainerId);
-    }
-    //remove the parent 'li'
-    else if(e.target.tagName === "SPAN"){
+    if(e.target.tagName === "SPAN"){
         e.target.parentElement.remove();
         saveData(listContainerId);
     }
+    else if(e.target.tagName === "LI"){
+        e.target.classList.toggle("checked");
+    }
     },false);
-    
-    showTask(listContainerId);
 }
 
-eventListContainer('list-container1');
-eventListContainer('list-container2');
-eventListContainer('list-container3');
-eventListContainer('list-container4');
-eventListContainer('list-container5');
-eventListContainer('list-container6');
-eventListContainer('list-container7');
-
-
+eventListContainer('list-container1','input-box1');
+eventListContainer('list-container2','input-box2');
+eventListContainer('list-container3','input-box3');
+eventListContainer('list-container4','input-box4');
+eventListContainer('list-container5','input-box5');
+eventListContainer('list-container6','input-box6');
+eventListContainer('list-container7','input-box7');
